@@ -1,6 +1,8 @@
-package src;
+package src.board;
 
-import javax.management.ImmutableDescriptor;
+import src.pieces.Piece;
+
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,7 @@ public abstract class Tile {
 
     protected final int tileCoordinate;
 
-    private static final Map<Integer, EmptyTile> EMPTY_TILES = createAllPossibleEmptyTiles();
+    private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 
@@ -18,7 +20,7 @@ public abstract class Tile {
             emptyTileMap.put(i, new EmptyTile(i));
         }
 
-        return ImmutableMap.copyOf(emptyTileMap);
+        return Collections.unmodifiableMap(emptyTileMap);
     }
 
     public Tile(int tileCoordinate) {
@@ -31,7 +33,7 @@ public abstract class Tile {
 
     public static final class EmptyTile extends Tile {
 
-        EmptyTile(final int coordinate) {
+        private EmptyTile(final int coordinate) {
             super(coordinate);
         }
 
@@ -50,7 +52,7 @@ public abstract class Tile {
 
         private final Piece pieceOnTile;
 
-        public OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
+        private OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
             super(tileCoordinate);
             this.pieceOnTile = pieceOnTile;
         }
