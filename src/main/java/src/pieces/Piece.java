@@ -4,7 +4,7 @@ import src.Alliance;
 import src.board.Board;
 import src.board.Move;
 
-import java.util.List;
+import java.util.Collection;
 
 public abstract class Piece {
 
@@ -20,6 +20,6 @@ public abstract class Piece {
         return this.pieceAlliance;
     }
 
-    public abstract List<Move> calculateMoves(final Board board);
+    public abstract Collection<Move> calculateMoves(final Board board);
 
 }
