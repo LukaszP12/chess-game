@@ -7,6 +7,7 @@ import src.board.Move;
 import src.board.Tile;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public List<Move> calculateMoves(Board board) {
+    public Collection<Move> calculateLegalMoves(Board board) {
 
         final List<Move> legalMoves = new ArrayList<>();
 
