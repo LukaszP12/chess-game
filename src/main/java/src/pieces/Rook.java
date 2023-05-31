@@ -15,8 +15,8 @@ public class Rook extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-8, -1, 1, 8};
 
-    public Rook(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Rook(final Alliance pieceAlliance, final int piecePosition) {
+        super(PieceType.ROOK, pieceAlliance, piecePosition);
     }
 
     @Override
@@ -57,5 +57,10 @@ public class Rook extends Piece {
 
     private static boolean isEightColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.EIGHT_COLUMN[currentPosition] && (candidateOffset == 1);
+    }
+
+    @Override
+    public String toString() {
+        return PieceType.ROOK.toString();
     }
 }
