@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -134,6 +135,7 @@ public class Board {
         Alliance nextMoveMaker;
 
         public Builder() {
+            this.boardConfig = new HashMap<>();
         }
 
         public Builder setPiece(final Piece piece) {
