@@ -12,11 +12,12 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-    private final static int[] CANDIDATE_MOVE_COORDINATES = {8, 16};
+    private final static int[] CANDIDATE_MOVE_COORDINATES = {8, 16, 7, 9};
     private boolean isFirstMove;
 
-    public Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Pawn(final Alliance pieceAlliance,
+                final int piecePosition) {
+        super(pieceAlliance, piecePosition);
     }
 
     @Override

@@ -12,9 +12,9 @@ public abstract class Piece {
     protected final Alliance pieceAlliance;
     protected final boolean isFirstMove;
 
-    public Piece(final int piecePosition, final Alliance pieceAlliance) {
-        this.piecePosition = piecePosition;
+    public Piece(final Alliance pieceAlliance, final int piecePosition) {
         this.pieceAlliance = pieceAlliance;
+        this.piecePosition = piecePosition;
         this.isFirstMove = false;
     }
 
