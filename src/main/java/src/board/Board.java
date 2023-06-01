@@ -9,6 +9,7 @@ import src.pieces.Piece;
 import src.pieces.Queen;
 import src.pieces.Rook;
 import src.player.BlackPlayer;
+import src.player.Player;
 import src.player.WhitePlayer;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class Board {
             }
         }
         return builder.toString();
+    }
+
+    public Player whitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player blackPlayer() {
+        return this.blackPlayer;
     }
 
     public Collection<Piece> getBlackPieces() {

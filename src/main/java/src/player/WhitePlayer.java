@@ -1,5 +1,6 @@
 package src.player;
 
+import src.Alliance;
 import src.board.Board;
 import src.board.Move;
 import src.pieces.Piece;
@@ -15,5 +16,15 @@ public class WhitePlayer extends Player {
     @Override
     public Collection<Piece> getActivePieces() {
         return this.board.getWhitePieces();
+    }
+
+    @Override
+    public Alliance getAlliance() {
+        return Alliance.WHITE;
+    }
+
+    @Override
+    public Alliance getOpponent() {
+        return Alliance.BLACK;
     }
 }
