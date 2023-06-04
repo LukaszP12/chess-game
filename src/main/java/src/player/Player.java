@@ -6,7 +6,10 @@ import src.board.Move;
 import src.pieces.King;
 import src.pieces.Piece;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class Player {
 
@@ -14,14 +17,26 @@ public abstract class Player {
     protected final King playerKing;
     protected final Collection<Move> legalMoves;
     protected final Collection<Move> opponentMoves;
+    private final boolean isInCheck;
 
     public Player(final Board board,
                   final Collection<Move> legalMoves,
-                  final Collection<Move> opponentMoves) {
+                  final Collection<Move> opponentMoves, boolean isInCheck) {
         this.board = board;
         this.playerKing = establishKing();
         this.legalMoves = legalMoves;
         this.opponentMoves = opponentMoves;
+        this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
+    }
+
+    private static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
+        final List<Move> attackMoves = new ArrayList<>();
+        for (final Move move : moves) {
+            if (piecePosition == move.getDestinationCoordinate()) {
+                attackMoves.add(move);
+            }
+        }
+        return Collections.unmodifiableList(attackMoves);
     }
 
     private King establishKing() {
@@ -38,14 +53,24 @@ public abstract class Player {
     }
 
     public boolean isInCheck() {
-        return false;
+        return this.isInCheck;
     }
 
     public boolean isInCheckMate() {
-        return false;
+        return this.isInCheck && !hasEscapeMoves();
     }
 
     public boolean isInStaleMate() {
+        return !this.isInCheck && !hasEscapeMoves();
+    }
+
+    protected boolean hasEscapeMoves() {
+        for (final Move move : this.legalMoves) {
+            final MoveTransition transition = makeMove(move);
+            if (transition.getMoveStatus().isDone()) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -54,7 +79,7 @@ public abstract class Player {
     }
 
     public MoveTransition makeMove(final Move move) {
-        
+
         return null;
     }
 

@@ -12,7 +12,7 @@ public class BlackPlayer extends Player {
     public BlackPlayer(Board board,
                        Collection<Move> blackStandardLegalMoves,
                        Collection<Move> whiteStandardLegalMoves) {
-        super(board, blackStandardLegalMoves, whiteStandardLegalMoves);
+        super(board, blackStandardLegalMoves, whiteStandardLegalMoves, isInCheck);
     }
 
     @Override
