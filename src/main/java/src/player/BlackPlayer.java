@@ -12,7 +12,7 @@ public class BlackPlayer extends Player {
     public BlackPlayer(Board board,
                        Collection<Move> blackStandardLegalMoves,
                        Collection<Move> whiteStandardLegalMoves) {
-        super(board, blackStandardLegalMoves, whiteStandardLegalMoves, isInCheck);
+        super(board, blackStandardLegalMoves, whiteStandardLegalMoves);
     }
 
     @Override
@@ -26,7 +26,12 @@ public class BlackPlayer extends Player {
     }
 
     @Override
-    public Alliance getOpponent() {
-        return Alliance.WHITE;
+    public Player getOpponent() {
+        return this.board.whitePlayer();
+    }
+
+    @Override
+    public String toString() {
+        return Alliance.BLACK.toString();
     }
 }

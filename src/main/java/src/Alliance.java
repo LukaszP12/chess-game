@@ -1,5 +1,7 @@
 package src;
 
+import src.pieces.Piece;
+
 public enum Alliance {
     WHITE {
         @Override
@@ -39,4 +41,5 @@ public enum Alliance {
     public abstract boolean isWhite();
 
     public abstract boolean isBlack();
+
 }

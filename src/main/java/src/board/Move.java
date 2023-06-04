@@ -20,6 +20,11 @@ public abstract class Move {
         return movedPiece.getPiecePosition() + destinationCoordinate;
     }
 
+    public Board execute() {
+
+        return null;
+    }
+
     public static final class MajorMove extends Move {
 
         public MajorMove(final Board board,
@@ -28,6 +33,10 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
         }
 
+        @Override
+        public Board execute() {
+            return super.execute();
+        }
     }
 
     public static final class AttackMove extends Move {
@@ -42,6 +51,10 @@ public abstract class Move {
             this.attackedPiece = attackedPiece;
         }
 
+        @Override
+        public Board execute() {
+            return super.execute();
+        }
     }
 
 }
