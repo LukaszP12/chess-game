@@ -21,7 +21,6 @@ public abstract class Move {
     }
 
     public Board execute() {
-
         return null;
     }
 
@@ -35,7 +34,23 @@ public abstract class Move {
 
         @Override
         public Board execute() {
-            return super.execute();
+
+            final Board.Builder builder = new Board.Builder();
+
+            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                //TODO hashcode and equals for pieces
+                if (!this.movedPiece.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+
+            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+                builder.setPiece(piece);
+            }
+            //move the move piece
+            builder.setPiece(null);
+            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+            return builder.build();
         }
     }
 
