@@ -9,6 +9,8 @@ public abstract class Move {
     final Piece movedPiece;
     final int destinationCoordinate;
 
+    public static final Move NULL_MOVE = new NullMove();
+
     private Move(final Board board,
                  final Piece movedPiece,
                  final int destinationCoordinate) {
@@ -207,6 +209,58 @@ public abstract class Move {
                           final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
         }
+
+    }
+
+    public static final class KingSideCastleMove extends CastleMove {
+
+        public KingSideCastleMove(final Board board,
+                                  final Piece movedPiece,
+                                  final int destinationCoordinate) {
+            super(board, movedPiece, destinationCoordinate);
+        }
+
+    }
+
+    public static final class QueenSideCastleMove extends CastleMove {
+
+        public QueenSideCastleMove(final Board board,
+                                   final Piece movedPiece,
+                                   final int destinationCoordinate) {
+            super(board, movedPiece, destinationCoordinate);
+        }
+    }
+
+    public static final class NullMove extends Move {
+
+        public NullMove() {
+            super(null, null, -1);
+        }
+
+        @Override
+        public Board execute() {
+            throw new RuntimeException("cannot execute the null move!");
+        }
+    }
+
+    public static class MoveFactory {
+
+        private MoveFactory() {
+            throw new RuntimeException("Not instantiable!");
+        }
+
+        public static Move createMove(final Board board,
+                                      final int currentCoordinate,
+                                      final int destinationCoordinate) {
+            for (final Move move : board.getAllLegalMoves()) {
+                if (move.getCurrentCoordinate() == currentCoordinate &&
+                        move.getDestinationCoordinate() == destinationCoordinate) {
+                    return move;
+                }
+            }
+            return NULL_MOVE;
+        }
+
     }
 
 }

@@ -157,6 +157,10 @@ public class Board {
         return builder.build();
     }
 
+    public Iterable<Move> getAllLegalMoves() {
+        return null;
+    }
+
     public static class Builder {
 
         Map<Integer, Piece> boardConfig;
